@@ -1,18 +1,15 @@
 #/bin/bash
 #
-# Installs a Python 2.7 on centos operating systems without disturbing 2.6 whichimpacts yum
-# Receipe comes from the following:
-# https://www.digitalocean.com/community/tutorials/how-to-set-up-python-2-7-6-and-3-3-3-on-centos-6-4
+# Installs a Python 2.7 on centos, ubuntu operating systems without disturbing 2.6 whichimpacts yum
 #
 
 set -x
 
-INSTALL_DIR=$HOME/vagrant
+INSTALL_DIR=/home/vagrant/python
 PYTHON_VERSION=2.7.10
 SETUP_TOOLS_VERSION=1.4.2
 
 wget http://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.xz
-
 
 # Let's decode (-d) the XZ encoded tar archive:
 xz -d Python-$PYTHON_VERSION.tar.xz

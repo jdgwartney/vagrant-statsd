@@ -4,15 +4,29 @@ Package {
 }
 
 exec { 'install-python':
-  command => '/vagrant/install-python27.sh',
+  command => "/vagrant/install-python27.sh",
+  require => Exec["update-packages"],
 }
-sudo apt-get tcl8.4-dev -y
 
-$packages = [ "git", "stress", "sysstat", "python-software-properties", "nodejs", "npm", "memcached", "python-dev" "python-pip", "sqllite3", "libcairo2", "libcairo2-dev", "python-cairo", "pkg-config", "tcl8.4-dev"]
-package { $packages:
-  ensure => "installed"
-  require => Exec["install-python"]
+Package {
+  ensure => "installed",
+  require => Exec["install-python"],
 }
+
+package { "git": }
+package { "stress": }
+package { "sysstat": }
+package { "nodejs":}
+package { "npm": }
+package { "memcached": }
+package { "python-dev": }
+package { "python-pip": }
+package { "sqlite3": }
+package { "libcairo2": }
+package { "libcairo2-dev": }
+package { "python-cairo": }
+package { "pkg-config": }
+package { "tcl8.4-dev": }
 
 file { 'bash_profile':
   path    => '/home/vagrant/.bash_profile',
