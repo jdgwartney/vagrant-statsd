@@ -5,7 +5,7 @@
 
 set -x
 
-INSTALL_DIR=/home/vagrant/python
+INSTALL_DIR=/usr/local
 PYTHON_VERSION=2.7.10
 SETUP_TOOLS_VERSION=1.4.2
 
@@ -61,5 +61,5 @@ wget https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py
 sudo $INSTALL_DIR/bin/python2.7 get-pip.py
 sudo $INSTALL_DIR/bin/python2.7 $INSTALL_DIR/bin/pip install virtualenv
 
-echo 'export PATH="$INSTALL_DIR/bin:$PATH"' >> /home/vagrant/.bash_profile
+echo "export PATH=$INSTALL_DIR/bin:"'$PATH' >> /home/vagrant/.bash_profile
 
