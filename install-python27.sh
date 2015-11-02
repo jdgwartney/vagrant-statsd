@@ -9,6 +9,7 @@ INSTALL_DIR=/usr/local
 PYTHON_VERSION=2.7.10
 SETUP_TOOLS_VERSION=1.4.2
 
+echo "Download python $PYTHON_VERSION, extract, configure, and build"
 wget http://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.xz
 
 # Let's decode (-d) the XZ encoded tar archive:
@@ -36,10 +37,7 @@ sudo make altinstall
 
 popd
 
-
-# Example: export PATH="[/path/to/installation]:$PATH"
-export PATH="$HOME/python/bin:$PATH"
-
+echo "Download setup tools $SETUP_TOOLS_VERSION, extract, and install"
 # Let's download the installation file using wget:
 wget --no-check-certificate "https://pypi.python.org/packages/source/s/setuptools/setuptools-$SETUP_TOOLS_VERSION.tar.gz"
 
@@ -55,10 +53,12 @@ sudo $INSTALL_DIR/bin/python setup.py install
 
 popd
 
-
+echo "Download latest version of pip, and install"
 wget https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py
 
 sudo $INSTALL_DIR/bin/python2.7 get-pip.py
+
+echo "Install virtualenv pip package"
 sudo $INSTALL_DIR/bin/python2.7 $INSTALL_DIR/bin/pip install virtualenv
 
 echo "export PATH=$INSTALL_DIR/bin:"'$PATH' >> /home/vagrant/.bash_profile

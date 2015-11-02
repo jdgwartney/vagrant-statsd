@@ -3,14 +3,19 @@ Package {
   allow_virtual => false,
 }
 
+exec { 'update-packages':
+  command => '/usr/bin/apt-get update -y',
+}
+
 exec { 'install-python':
   command => "/vagrant/install-python27.sh",
-  require => Exec["update-packages"],
+  require => File["bash_profile"],
 }
 
 Package {
   ensure => "installed",
-  require => Exec["install-python"],
+  require => Exec["update-packages"],
+  before => Exec["install-python"],
 }
 
 package { "git": }
@@ -36,9 +41,6 @@ file { 'bash_profile':
 }
 
 
-exec { 'update-packages':
-  command => '/usr/bin/apt-get update -y',
-}
 
 class { 'boundary':
   token => $api_token,
