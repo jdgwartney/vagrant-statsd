@@ -27,3 +27,4 @@ Vagrant.configure(2) do |config|
       "api_token" => ENV["API_TOKEN"]
     }
   end
+end
